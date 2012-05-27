@@ -1,0 +1,196 @@
+[PHASE 0.2] Standard model fit. Log-L = -6400.8. Tree length = 1.20233 subs/site 
+[PHASE 1.1] Model biased for A
+[PHASE 1.2] Finished with the model biased for A. Log-L = -6399.636
+
+	Bias term           =   42.265
+	proportion          =    0.012
+	Exp freq increase   =   44.194%
+	p-value    =    0.507
+[PHASE 2.1] Model biased for C
+[PHASE 2.2] Finished with the model biased for C. Log-L = -6400.801
+
+	Bias term           =    5.000
+	proportion          =    0.000
+	Exp freq increase   =    2.931%
+	p-value    =    1.000
+[PHASE 3.1] Model biased for D
+[PHASE 3.2] Finished with the model biased for D. Log-L = -6397.556
+
+	Bias term           =    4.370
+	proportion          =    0.061
+	Exp freq increase   =   13.943%
+	p-value    =    0.090
+[PHASE 4.1] Model biased for E
+[PHASE 4.2] Finished with the model biased for E. Log-L = -6389.834
+
+	Bias term           =   70.699
+	proportion          =    0.010
+	Exp freq increase   =   43.407%
+	p-value    =    0.000
+[PHASE 5.1] Model biased for F
+[PHASE 5.2] Finished with the model biased for F. Log-L = -6397.539
+
+	Bias term           =   38.827
+	proportion          =    0.039
+	Exp freq increase   =   30.120%
+	p-value    =    0.089
+[PHASE 6.1] Model biased for G
+[PHASE 6.2] Finished with the model biased for G. Log-L = -6396.350
+
+	Bias term           =   11.371
+	proportion          =    0.041
+	Exp freq increase   =   30.242%
+	p-value    =    0.031
+[PHASE 7.1] Model biased for H
+[PHASE 7.2] Finished with the model biased for H. Log-L = -6400.801
+
+	Bias term           =    5.000
+	proportion          =    0.000
+	Exp freq increase   =    7.795%
+	p-value    =    1.000
+[PHASE 8.1] Model biased for I
+[PHASE 8.2] Finished with the model biased for I. Log-L = -6390.923
+
+	Bias term           =   10.883
+	proportion          =    0.099
+	Exp freq increase   =   31.531%
+	p-value    =    0.000
+[PHASE 9.1] Model biased for K
+[PHASE 9.2] Finished with the model biased for K. Log-L = -6392.156
+
+	Bias term           =   22.001
+	proportion          =    0.020
+	Exp freq increase   =   40.836%
+	p-value    =    0.001
+[PHASE 10.1] Model biased for L
+[PHASE 10.2] Finished with the model biased for L. Log-L = -6386.180
+
+	Bias term           =   25.913
+	proportion          =    0.027
+	Exp freq increase   =   41.726%
+	p-value    =    0.000
+[PHASE 11.1] Model biased for M
+[PHASE 11.2] Finished with the model biased for M. Log-L = -6400.134
+
+	Bias term           =   38.570
+	proportion          =    0.009
+	Exp freq increase   =   32.944%
+	p-value    =    0.721
+[PHASE 12.1] Model biased for N
+[PHASE 12.2] Finished with the model biased for N. Log-L = -6395.707
+
+	Bias term           =   11.322
+	proportion          =    0.028
+	Exp freq increase   =   34.111%
+	p-value    =    0.017
+[PHASE 13.1] Model biased for P
+[PHASE 13.2] Finished with the model biased for P. Log-L = -6388.389
+
+	Bias term           =   11.028
+	proportion          =    0.051
+	Exp freq increase   =   21.957%
+	p-value    =    0.000
+[PHASE 14.1] Model biased for Q
+[PHASE 14.2] Finished with the model biased for Q. Log-L = -6400.801
+
+	Bias term           =    5.000
+	proportion          =    0.000
+	Exp freq increase   =    8.537%
+	p-value    =    1.000
+[PHASE 15.1] Model biased for R
+[PHASE 15.2] Finished with the model biased for R. Log-L = -6399.944
+
+	Bias term           =    5.681
+	proportion          =    0.041
+	Exp freq increase   =   19.322%
+	p-value    =    0.634
+[PHASE 16.1] Model biased for S
+[PHASE 16.2] Finished with the model biased for S. Log-L = -6400.620
+
+	Bias term           =   12.864
+	proportion          =    0.009
+	Exp freq increase   =   46.013%
+	p-value    =    0.948
+[PHASE 17.1] Model biased for T
+[PHASE 17.2] Finished with the model biased for T. Log-L = -6394.115
+
+	Bias term           =    3.226
+	proportion          =    0.118
+	Exp freq increase   =   14.180%
+	p-value    =    0.004
+[PHASE 18.1] Model biased for V
+[PHASE 18.2] Finished with the model biased for V. Log-L = -6400.318
+
+	Bias term           =   13.140
+	proportion          =    0.021
+	Exp freq increase   =   30.948%
+	p-value    =    0.810
+[PHASE 19.1] Model biased for W
+[PHASE 19.2] Finished with the model biased for W. Log-L = -6400.801
+
+	Bias term           =    5.000
+	proportion          =    0.000
+	Exp freq increase   =    1.113%
+	p-value    =    1.000
+[PHASE 20.1] Model biased for Y
+[PHASE 20.2] Finished with the model biased for Y. Log-L = -6397.709
+
+	Bias term           =  369.680
+	proportion          =    0.004
+	Exp freq increase   =   55.151%
+	p-value    =    0.103
+
+Residues (and p-values) for which there is evidence of directional selection
+	L : 1.99253e-06
+	P : 1.68157e-05
+	E : 6.7339e-05
+	I : 0.000190774
+	K : 0.000616414
+
+The list of sites which show evidence of directional selection (Bayes Factor > 20)
+together with the target residues and inferred substitution counts
+
+Site       52
+ Preferred residues: K
+ Substitution counts:
+	A->T:    0/T->A:    1
+	K->T:    0/T->K:    5
+Site      139
+ Preferred residues: P
+ Substitution counts:
+	A->S:    0/S->A:    1
+	P->S:    0/S->P:    6
+Site      145
+ Preferred residues: L
+ Substitution counts:
+	A->S:    0/S->A:    1
+	L->S:    0/S->L:    6
+Site      154
+ Preferred residues: L
+ Substitution counts:
+	H->L:    1/L->H:    0
+	H->N:    3/N->H:    0
+	H->Q:    1/Q->H:    0
+	L->Q:    3/Q->L:    6
+Site      157
+ Preferred residues: P
+ Substitution counts:
+	P->S:    0/S->P:    8
+Site      200
+ Preferred residues: E
+ Substitution counts:
+	A->E:    5/E->A:    0
+Site      429
+ Preferred residues: K
+ Substitution counts:
+	K->Q:    0/Q->K:    1
+Site      515
+ Preferred residues: K
+ Substitution counts:
+	K->N:    1/N->K:    3
+Site      527
+ Preferred residues: I
+ Substitution counts:
+	I->M:    0/M->I:    6
+	I->V:    1/V->I:    0
+	M->V:    1/V->M:    0
