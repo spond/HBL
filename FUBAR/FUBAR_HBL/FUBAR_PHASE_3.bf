@@ -137,7 +137,7 @@ function runMCMC (chainID,gridFile, sampleFile, total,discard,expected_samples,_
     
     //fprintf (stdout, +weights["_MATRIX_ELEMENT_VALUE_<1e-10"], "\n");
     
-    defaultStep = Max(Min(0.001,1/sites),(weights%0)[points*20$100]);
+    defaultStep = Max(Min(0.001,1/sites),(weights%0)[points*50$100]);
     
     //fprintf (stdout, "\nDefault step = ", defaultStep, "\n");
      

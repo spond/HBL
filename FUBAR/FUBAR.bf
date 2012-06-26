@@ -168,10 +168,10 @@ else
 
 fubar_data = (ReadCSVTable (_fubarResultLocation, 1))[1]%4;
 
-fprintf (stdout, "\n[RESULTS] At false discovery rate of 20% ");
+fprintf (stdout, "\n[RESULTS] At posterior probability >= 0.9 ");
 
 idx = Rows(fubar_data);
-while (fubar_data[idx-1][8] < 0.2 && idx > 0) {
+while (fubar_data[idx-1][4] >= 0.9 && idx > 0) {
     idx += -1;
 }
 
