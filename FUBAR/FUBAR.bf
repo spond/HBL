@@ -168,19 +168,19 @@ else
 
 fubar_data = (ReadCSVTable (_fubarResultLocation, 1))[1]%4;
 
-fprintf (stdout, "\n[RESULTS] At false discovery rate of 10% ");
+fprintf (stdout, "\n[RESULTS] At false discovery rate of 20% ");
 
-idx = 0;
-while (fubar_data[idx][8] < 0.1 && idx < Rows(fubar_data)) {
-    idx += 1;
+idx = Rows(fubar_data);
+while (fubar_data[idx-1][8] < 0.2 && idx > 0) {
+    idx += -1;
 }
 
-if (idx == 0) {
+if (idx == Rows(fubar_data) ) {
     fprintf (stdout, "there were no sites under diversifying positive selection\n");
 } else {
-    fprintf (stdout, "there were ", idx, " sites under diversifying positive selection\n");
+    fprintf (stdout, "there were ", Rows(fubar_data)-idx, " sites under diversifying positive selection\n");
     fprintf (stdout, "\nCodon\tProb[dN/dS>1]\tPSRF\tN_eff\tFDR");
-    for (idx2 = 0; idx2 < idx; idx2 += 1) {
+    for (idx2 = Rows(fubar_data)-1; idx2 >= idx; idx2 += -1) {
         fprintf (stdout, "\n", fubar_data[idx2][0], "\t",  fubar_data[idx2][4], "\t",  fubar_data[idx2][6], "\t",  fubar_data[idx2][7], "\t",  fubar_data[idx2][8]); 
     }
     fprintf (stdout, "\n");
