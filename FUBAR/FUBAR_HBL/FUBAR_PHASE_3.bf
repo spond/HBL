@@ -64,7 +64,7 @@ if (!debug) {
         runMCMC(_r,_gridInfo,_sampleFile,_chainLength,_chainBurnin,_chainSamples,_concentration);
     }
     
-    fprintf         (stdout, "[FUBAR PHASE 3 DONE] Finished running the MCMC chains; drew ", _chainsToRun, "x", _chainSamples, " samples from chains of length ", _chainLength, 
+    fprintf         (stdout, "\n[FUBAR PHASE 3 DONE] Finished running the MCMC chains; drew ", _chainsToRun, "x", _chainSamples, " samples from chains of length ", _chainLength, 
                              " after discarding ", _chainBurnin, " burn-in steps. Achieved throughput of ", Format(_chainLength/(Time(1)-time0),6,0) + " moves/sec.\n");
    
     if (MPI_NODE_COUNT > 1 && points > MPI_NODE_COUNT) {
