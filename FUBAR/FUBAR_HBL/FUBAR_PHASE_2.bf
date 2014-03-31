@@ -1,6 +1,7 @@
 fscanf  			(stdin,"String", nucFit);
 fscanf  			(stdin,"String", codonFit);
 fscanf  			(stdin,"String", gridInfoFile);
+fscanf              (stdin, "String", dsVariable);
 fscanf              (stdin,"Number", grid_points);
 
 ExecuteAFile        (PATH_TO_CURRENT_BF + "FUBAR_tools.ibf");
@@ -34,17 +35,29 @@ paramName       =   (nuclParamInfo["Local"])[0];
 ExecuteCommands     ("FindRoot(nf,`nucBrLen`-1,`paramName`,0,1e10);");
 paramName       =   paramName[Abs(prefix) + 1][Abs(paramName)-1];
 
+dsVariable = (dsVariable && 1) == "Y";
+
 //----------------------------------------------------------------------------
 
 
 rescaleBranchLengths (0.5,1);
 ExecuteCommands (constructLF ("codonLF", "codon_filter", "codon_tree", fileCount));
 
-grid = defineAlphaBetaGrid (grid_points);
+grid = defineAlphaBetaGrid (grid_points, dsVariable);
 
-fprintf         (stdout, "[FUBAR PHASE 2] Determining appropriate branch scaling using the ", grid_points, "X", grid_points, " grid points.\n");
+if (dsVariable) {
+    x_grid = grid_points;
+    y_grid = grid_points;
+} else {
+    x_grid = 1;
+    y_grid = grid_points;
+
+}
+fprintf         (stdout, "[FUBAR PHASE 2] Determining appropriate branch scaling using the ", x_grid, "X", y_grid, " grid points.\n");
+
 bestPair        = computeLFOnGrid ("codonLF", grid, 0);
 bestPair        = bestPair%2;
+
 bestAlpha = bestPair [Rows(bestPair)-1][0];
 bestBeta  = bestPair [Rows(bestPair)-1][1];
 
@@ -60,7 +73,7 @@ fprintf (codonFit, CLEAR_FILE,lfExport);
 
 
 fprintf         (stdout, "\tBest scaling achieved for dN/dS = ", Format(bestBeta/bestAlpha,5,2), ".\n\tComputing site-by-site likelihoods at ", 
-                                     grid_points, "X", grid_points, " grid points\n");
+                                     x_grid, "X", y_grid, " grid points\n");
 
 gridInfo        = computeLFOnGrid ("codonLF", grid, 1);
 
@@ -98,9 +111,13 @@ function rescaleBranchLengths (dNdS, firstPass) {
 
 //------------------------------------------------------------------------------------------------//
 
-function defineAlphaBetaGrid (one_d_points) {
-    alphaBetaGrid = {one_d_points^2,2}; // (alpha, beta) pair
+function defineAlphaBetaGrid (one_d_points, vary_ds) {
     oneDGrid      = {one_d_points,1};
+    if (vary_ds) {
+        alphaBetaGrid = {one_d_points^2,2}; // (alpha, beta) pair
+    } else {
+        alphaBetaGrid = {one_d_points,2}["1"];
+    }
    
     one_d_points    = Max (one_d_points, 10);
     neg_sel         = 0.7;
@@ -119,13 +136,19 @@ function defineAlphaBetaGrid (one_d_points) {
         oneDGrid [neg_sel_points+_k-1][0] = 1+(_pos_step*_k)^3;
     }
     
-    _p = 0;
-    for (_r = 0; _r < one_d_points; _r += 1) {
-        for (_c = 0; _c < one_d_points; _c += 1) {
-           alphaBetaGrid[_p][0] = oneDGrid[_r];
-           alphaBetaGrid[_p][1] = oneDGrid[_c];
-           _p += 1;
+    if (vary_ds) {
+        _p = 0;
+        for (_r = 0; _r < one_d_points; _r += 1) {
+            for (_c = 0; _c < one_d_points; _c += 1) {
+               alphaBetaGrid[_p][0] = oneDGrid[_r];
+               alphaBetaGrid[_p][1] = oneDGrid[_c];
+               _p += 1;
+            }
         }
+    } else {
+        for (_c = 0; _c < one_d_points; _c += 1) {
+            alphaBetaGrid[_c][1] = oneDGrid[_c];
+        }    
     }
     
     return alphaBetaGrid;   

@@ -82,13 +82,34 @@ if (_cachingOK && !_fubarGridInfoLocation && !_fubarCodonFitLocation) {
 else
 {
     _cachingOK = 0;
-    _grid_points = prompt_for_a_value ("Number of grid points per dimension (total number is D^2)",20,5,50,1);
-    fprintf (stdout, "[DIAGNOSTIC] FUBAR will use a ", _grid_points , "X", _grid_points, " grid\n"); 
     
-    ExecuteAFile (Join(DIRECTORY_SEPARATOR,{{PATH_TO_CURRENT_BF[0][Abs(PATH_TO_CURRENT_BF)-2],"FUBAR_HBL","FUBAR_PHASE_2.bf"}}), {"0" : _fubarNucFitLocation,
-                                                                                                                                 "1" : _fubarCodonFitLocation,
-                                                                                                                                 "2" : _fubarGridInfoLocation,
-                                                                                                                                 "3" : "" + _grid_points});
+    ChoiceList (_isDSVariable,"Synonymous Rate Variation",1,SKIP_NONE,
+					 "Yes","FUBAR grid will accommodate both synonymous and non-synonymous rate variation [Strongly suggested].",
+				     "No","FUBAR grid will only allow dN variation (dS = 1). Use for direct comparisons with tools that do not permit dN variation (e.g. PAML)");
+
+    if (_isDSVariable < 0) {
+        return 0;
+    }
+    
+    if (_isDSVariable == 0) {
+        _grid_points = prompt_for_a_value ("Number of grid points per dimension (total number is D^2)",20,5,50,1);
+        fprintf (stdout, "[DIAGNOSTIC] FUBAR will use a ", _grid_points , "X", _grid_points, " grid\n"); 
+    
+        ExecuteAFile (Join(DIRECTORY_SEPARATOR,{{PATH_TO_CURRENT_BF[0][Abs(PATH_TO_CURRENT_BF)-2],"FUBAR_HBL","FUBAR_PHASE_2.bf"}}), {"0" : _fubarNucFitLocation,
+                                                                                                                                     "1" : _fubarCodonFitLocation,
+                                                                                                                                     "2" : _fubarGridInfoLocation,
+                                                                                                                                     "3" : "Y",
+                                                                                                                                     "4" : "" + _grid_points});
+    } else {
+        _grid_points = prompt_for_a_value ("Number of grid points for dN (total number is D)",100,5,500,1);
+        fprintf (stdout, "[DIAGNOSTIC] FUBAR will use a 1 X ", _grid_points, " grid\n"); 
+    
+        ExecuteAFile (Join(DIRECTORY_SEPARATOR,{{PATH_TO_CURRENT_BF[0][Abs(PATH_TO_CURRENT_BF)-2],"FUBAR_HBL","FUBAR_PHASE_2.bf"}}), {"0" : _fubarNucFitLocation,
+                                                                                                                                     "1" : _fubarCodonFitLocation,
+                                                                                                                                     "2" : _fubarGridInfoLocation,
+                                                                                                                                     "3" : "N",
+                                                                                                                                     "4" : "" + _grid_points});
+    }
     fprintf (stdout, "[DIAGNOSTIC] FUBAR wrote the self-contained codon fit file to ", _fubarCodonFitLocation, "\n"); 
     fprintf (stdout, "[DIAGNOSTIC] FUBAR wrote the the site likelihoods file to ", _fubarGridInfoLocation, "\n"); 
 }
