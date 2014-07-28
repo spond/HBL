@@ -12,9 +12,9 @@ sim_settings = {"Globals" :
 						{0.25,0.25,0.25}
 						{0.25,0.25,0.25}
 						{0.25,0.25,0.25}},
-				"Branch Length" : 0.1,
+				"Branch Length" : 1,
 				"Codons" : 10000,
-				"omegas" : {{0,   0.5},
+				"omegas" : {{0.01,   0.5},
 						     {0.1, 0.25}
 						     {1, 0.15}
 						     {10, 0.10}
@@ -77,6 +77,7 @@ for (segment = 0; segment < Rows (omegas); segment += 1) {
 DataSetFilter codonDF = CreateFilter (bigDS,3,"","",GeneticCodeExclusions);
 
 USE_LAST_RESULTS 			= 1;
+VERBOSITY_LEVEL				= 1;
 
 LikelihoodFunction verifier = (codonDF, inference_tree);
 
@@ -84,15 +85,18 @@ LFCompute(verifier,LF_START_COMPUTE);
 LFCompute(verifier,logL);
 LFCompute(verifier,LF_DONE_COMPUTE);
 
+fprintf (stdout, "N = ", sim_settings ["Codons"], " codons \n");
 fprintf (stdout, "Log (L) under the true parameter values = ", logL, "\n");
+fprintf (stdout, "Simulated branch length = ", sim_settings["Branch Length"], "\n");
 
 Optimize (results, verifier);
-fprintf (stdout, "Log (L) under the MLEs = ", results[1][0], "\n");
+fprintf (stdout, "\nLog (L) under the MLEs = ", results[1][0], "\n");
+fprintf (stdout, "Inferred branch length = ", BranchLength (inference_tree, 0), "\n\n");
 
 GetInformation (inferred_rates, omega_cat);
 
 for (k = 0; k < Rows (omegas); k+=1) {
-	fprintf (stdout, "Class\t", k+1, " omega ", inferred_rates[0][k], " (simulated ", omegas[k][0], "), weight ", inferred_rates[1][k], " (simulated ", omegas[k][1], ")\n");
+	fprintf (stdout, "Class\t", k+1, " omega ", Format(inferred_rates[0][k], 10,8), " (simulated ", Format(omegas[k][0], 10,8), "), weight ", Format (inferred_rates[1][k], 8, 7), " (simulated ", Format(omegas[k][1], 8,7), ")\n");
 }
 
 
